@@ -1,0 +1,21 @@
+[workspace]
+members = ["packages/*", "contracts/*"]
+
+# Resolver has to be set explicitely in workspaces, see https://github.com/rust-lang/cargo/issues/9956
+resolver = "2"
+
+[profile.release.package.cw20-base]
+codegen-units = 1
+incremental = false
+
+[profile.release.package.cw20-stake]
+codegen-units = 1
+incremental = false
+
+[profile.release]
+rpath = false
+lto = true
+overflow-checks = true
+opt-level = 3
+debug = false
+debug-assertions = false

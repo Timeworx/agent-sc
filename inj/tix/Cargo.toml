@@ -1,0 +1,45 @@
+[workspace]
+members = ["packages/*", "contracts/*"]
+
+# Resolver has to be set explicitely in workspaces, see https://github.com/rust-lang/cargo/issues/9956
+resolver = "2"
+
+[workspace.package]
+version       = "0.1.0"
+edition       = "2021"
+license       = "Apache-2.0"
+repository    = "https://github.com/CosmWasm/cw-nfts"
+homepage      = "https://cosmwasm.com"
+documentation = "https://docs.cosmwasm.com"
+rust-version  = "1.65"
+
+[workspace.dependencies]
+cosmwasm-schema = "1.2.1"
+cosmwasm-std    = "1.2.1"
+cw2             = "1.1.0"
+cw20            = "1.1.0"
+cw-multi-test   = "0.16.5"
+cw-ownable      = "0.5.1"
+cw-storage-plus = "1.1.0"
+cw-utils        = "1.0.1"
+schemars        = "0.8.11"
+serde           = { version = "1.0.152", default-features = false, features = ["derive"] }
+thiserror       = "1.0.38"
+cw1-whitelist      = { version = "1.1.1", path = "./contracts/cw1-whitelist" }
+semver          = "1"
+
+[profile.release.package.claim-sc]
+codegen-units = 1
+incremental = false
+
+[profile.release.package.cw1-whitelist]
+codegen-units = 1
+incremental = false
+
+[profile.release]
+rpath            = false
+lto              = true
+overflow-checks  = true
+opt-level        = 3
+debug            = false
+debug-assertions = false
